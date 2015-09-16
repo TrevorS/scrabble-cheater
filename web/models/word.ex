@@ -10,7 +10,7 @@ defmodule ScrabbleCheater.Word do
   end
 
   def find_matches(permutations) do
-    from w in Word, where: w.value in ^permutations
+    from w in Word, where: w.value in ^permutations, order_by: w.value
   end
 
   @required_fields ~w(value)
