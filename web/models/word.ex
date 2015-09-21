@@ -4,16 +4,31 @@ defmodule ScrabbleCheater.Word do
   use ScrabbleCheater.Web, :model
 
   schema "words" do
-    field :value, :string
+    field :name, :string
+    field :sorted_name, :string
 
     timestamps
   end
 
-  def find_matches(permutations) do
-    from w in Word, where: w.value in ^permutations, order_by: w.value
+  def find_matches(letters) do
+    from(w in Word,
+      where: fragment("sorted_name ~ ?", ^matching_regex(letters)),
+      order_by: [desc: fragment("char_length(name)"), asc: w.name])
   end
 
-  @required_fields ~w(value)
+  defp matching_regex(letters) do
+    "^#{split_sort_regex(letters)}?$"
+  end
+
+  defp split_sort_regex(letters) do
+    letters
+    |> String.split("", trim: true)
+    |> Enum.reject(&(&1 === " " || &1 === ","))
+    |> Enum.sort
+    |> Enum.join("?")
+  end
+
+  @required_fields ~w(name sorted_name)
   @optional_fields ~w()
 
   @doc """

@@ -18,6 +18,6 @@ defmodule Mix.Tasks.ScrabbleCheater.Load do
     File.read!(path)
     |> String.split
     |> Enum.filter(fn (word) -> String.downcase(word) == word end)
-    |> Enum.each(fn (word) -> Repo.insert!(%Word{value: word}) end)
+    |> Enum.each(fn (word) -> Repo.insert!(%Word{name: word}) end)
   end
 end

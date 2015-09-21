@@ -19,7 +19,6 @@ defmodule ScrabbleCheater.Web do
   def model do
     quote do
       use Ecto.Model
-      
     end
   end
 
@@ -27,7 +26,9 @@ defmodule ScrabbleCheater.Web do
     quote do
       use Phoenix.Controller
 
+      alias ScrabbleCheater.Word
       alias ScrabbleCheater.Repo
+
       import Ecto.Model
       import Ecto.Query, only: [from: 1, from: 2]
 
@@ -62,7 +63,6 @@ defmodule ScrabbleCheater.Web do
       alias ScrabbleCheater.Repo
       import Ecto.Model
       import Ecto.Query, only: [from: 1, from: 2]
-
     end
   end
 

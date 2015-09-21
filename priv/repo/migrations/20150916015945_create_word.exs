@@ -3,10 +3,10 @@ defmodule ScrabbleCheater.Repo.Migrations.CreateWord do
 
   def change do
     create table(:words) do
-      add :value, :string
+      add :name, :string
+      add :sorted_name, :string
 
       timestamps
     end
-
   end
 end

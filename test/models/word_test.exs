@@ -3,7 +3,7 @@ defmodule ScrabbleCheater.WordTest do
 
   alias ScrabbleCheater.Word
 
-  @valid_attrs %{value: "some content"}
+  @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
